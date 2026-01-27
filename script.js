@@ -46,10 +46,34 @@ if (contactForm) {
         const formData = new FormData(this);
         const data = Object.fromEntries(formData);
         
-        // Here you would normally send the data to a server
-        // For now, we'll show a success message
-        alert('Thank you for your message! We will contact you shortly.');
-        this.reset();
+        // Create message for text
+        const message = `New contact from ${data.name} (${data.phone}): ${data.service} - ${data.message}`;
+        
+        // Send text message via email-to-SMS gateway
+        // Replace with your phone number and carrier
+        const yourPhoneNumber = '[YOUR_PHONE_NUMBER]'; // Remove dashes, just numbers
+        const carrier = '[YOUR_CARRIER]'; // Options: 'att', 'verizon', 'tmobile', 'sprint'
+        
+        const carrierGateways = {
+            'att': 'txt.att.net',
+            'verizon': 'vtext.com',
+            'tmobile': 'tmomail.net',
+            'sprint': 'messaging.sprintpcs.com'
+        };
+        
+        // Create mailto link with the message
+        const emailGateway = `${yourPhoneNumber}@${carrierGateways[carrier]}`;
+        const subject = encodeURIComponent('Tree Busters Contact');
+        const body = encodeURIComponent(message);
+        
+        // Open email client to send the text
+        window.location.href = `mailto:${emailGateway}?subject=${subject}&body=${body}`;
+        
+        // Show confirmation to user
+        setTimeout(() => {
+            alert('Thank you for your message! We will contact you shortly.');
+            this.reset();
+        }, 1000);
     });
 }
 
