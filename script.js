@@ -162,7 +162,9 @@ document.addEventListener('DOMContentLoaded', function() {
     
     function closeLightbox() {
         lightbox.style.display = 'none';
-        document.body.style.overflow = ''; // Empty string restores default behavior
+        document.body.style.removeProperty('overflow'); // Completely removes inline style
+        document.body.style.overflowX = '';
+        document.body.style.overflowY = '';
     }
     
     // Animate gallery items on scroll
