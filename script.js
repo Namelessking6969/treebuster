@@ -36,20 +36,47 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Form submission handling
+// Form submission handling with Formspree
 const contactForm = document.querySelector('.contact-form form');
+const formStatus = document.getElementById('form-status');
+
 if (contactForm) {
-    contactForm.addEventListener('submit', function(e) {
+    contactForm.addEventListener('submit', async function(e) {
         e.preventDefault();
         
-        // Get form data
-        const formData = new FormData(this);
-        const data = Object.fromEntries(formData);
+        const submitBtn = this.querySelector('button[type="submit"]');
+        const originalBtnText = submitBtn.textContent;
+        submitBtn.textContent = 'Sending...';
+        submitBtn.disabled = true;
         
-        // Here you would normally send the data to a server
-        // For now, we'll show a success message
-        alert('Thank you for your message! We will contact you shortly.');
-        this.reset();
+        try {
+            const formData = new FormData(this);
+            const response = await fetch(this.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
+            
+            if (response.ok) {
+                // Show success message
+                formStatus.innerHTML = '<p class="form-success">Thank you for your message! We will contact you shortly.</p>';
+                this.reset();
+            } else {
+                formStatus.innerHTML = '<p class="form-error">There was a problem sending your message. Please try again or call us directly.</p>';
+            }
+        } catch (error) {
+            formStatus.innerHTML = '<p class="form-error">There was a problem sending your message. Please try again or call us directly.</p>';
+        }
+        
+        submitBtn.textContent = originalBtnText;
+        submitBtn.disabled = false;
+        
+        // Clear status after 5 seconds
+        setTimeout(() => {
+            formStatus.innerHTML = '';
+        }, 5000);
     });
 }
 

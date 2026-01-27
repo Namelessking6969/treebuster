@@ -166,7 +166,8 @@
                         </div>
                     </div>
                     <div class="contact-form">
-                        <form>
+                        <!-- FORM CONFIGURATION: Replace YOUR_FORMSPREE_ID below with your form ID from formspree.io -->
+                        <form action="https://formspree.io/f/xgokrrlb" method="POST">
                             <div class="form-group">
                                 <label for="name">Name</label>
                                 <input type="text" id="name" name="name" required>
@@ -192,6 +193,7 @@
                             </div>
                             <button type="submit" class="btn btn-primary">Send Message</button>
                         </form>
+                        <div id="form-status" class="form-status"></div>
                     </div>
                 </div>
             </div>
