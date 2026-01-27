@@ -184,4 +184,42 @@ document.addEventListener('DOMContentLoaded', function() {
             galleryObserver.observe(item);
         });
     });
+    
+    // Gallery Horizontal Scroll Controls
+    const galleryPrev = document.querySelector('.gallery-prev');
+    const galleryNext = document.querySelector('.gallery-next');
+    const galleryGrid = document.querySelector('.gallery-grid');
+    
+    if (galleryPrev && galleryNext && galleryGrid) {
+        const scrollAmount = 320;
+        
+        galleryPrev.addEventListener('click', function() {
+            galleryGrid.scrollBy({
+                left: -scrollAmount,
+                behavior: 'smooth'
+            });
+        });
+        
+        galleryNext.addEventListener('click', function() {
+            galleryGrid.scrollBy({
+                left: scrollAmount,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowLeft') {
+                galleryGrid.scrollBy({
+                    left: -scrollAmount,
+                    behavior: 'smooth'
+                });
+            } else if (e.key === 'ArrowRight') {
+                galleryGrid.scrollBy({
+                    left: scrollAmount,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    }
 });
