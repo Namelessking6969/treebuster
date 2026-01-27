@@ -162,7 +162,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     function closeLightbox() {
         lightbox.style.display = 'none';
-        document.body.style.overflow = 'auto';
+        document.body.style.overflow = ''; // Empty string restores default behavior
     }
     
     // Animate gallery items on scroll
