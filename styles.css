@@ -773,6 +773,30 @@ body {
     }
 }
 
+/* Winter Gallery Section */
+.winter-gallery {
+    background-color: #f0f7ff;
+}
+
+.winter-gallery .section-title {
+    color: #1a3a5f;
+}
+
+.winter-gallery .gallery-subtitle {
+    color: #4a6fa5;
+}
+
+/* Video/Reel items in gallery */
+.gallery-video-item {
+    height: 400px;
+}
+
+.gallery-video-item iframe {
+    width: 100%;
+    height: 100%;
+    border-radius: 6px;
+}
+
 /* Smooth Scrolling */
 html {
     scroll-behavior: smooth;

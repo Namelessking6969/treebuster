@@ -187,7 +187,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Gallery Horizontal Scroll Controls
+    // Gallery Horizontal Scroll Controls - Summer Gallery
     const galleryPrev = document.querySelector('.gallery-prev');
     const galleryNext = document.querySelector('.gallery-next');
     const galleryGrid = document.querySelector('.gallery-grid');
@@ -209,7 +209,7 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
         
-        // Keyboard navigation
+        // Keyboard navigation for summer gallery
         document.addEventListener('keydown', function(e) {
             if (e.key === 'ArrowLeft') {
                 galleryGrid.scrollBy({
@@ -218,6 +218,44 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
             } else if (e.key === 'ArrowRight') {
                 galleryGrid.scrollBy({
+                    left: scrollAmount,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    }
+    
+    // Gallery Horizontal Scroll Controls - Winter Gallery
+    const galleryPrevWinter = document.querySelector('.gallery-prev-winter');
+    const galleryNextWinter = document.querySelector('.gallery-next-winter');
+    const galleryGridWinter = document.querySelector('.gallery-grid-winter');
+    
+    if (galleryPrevWinter && galleryNextWinter && galleryGridWinter) {
+        const scrollAmount = 320;
+        
+        galleryPrevWinter.addEventListener('click', function() {
+            galleryGridWinter.scrollBy({
+                left: -scrollAmount,
+                behavior: 'smooth'
+            });
+        });
+        
+        galleryNextWinter.addEventListener('click', function() {
+            galleryGridWinter.scrollBy({
+                left: scrollAmount,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Keyboard navigation for winter gallery
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowLeft' && document.activeElement === document.body) {
+                galleryGridWinter.scrollBy({
+                    left: -scrollAmount,
+                    behavior: 'smooth'
+                });
+            } else if (e.key === 'ArrowRight' && document.activeElement === document.body) {
+                galleryGridWinter.scrollBy({
                     left: scrollAmount,
                     behavior: 'smooth'
                 });
